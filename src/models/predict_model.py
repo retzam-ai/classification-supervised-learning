@@ -1,0 +1,46 @@
+import argparse
+from sklearn.metrics import classification_report
+from src.features.build_features import BuildFeatures
+from joblib import load
+
+class PredictModel:
+    
+    def __init__(self, dataset, model):
+        self.model = load(model)
+        self.prepocessed_data = BuildFeatures(dataset)
+        test, X_test, y_test = self.prepocessed_data.get_data('test', oversample=False)
+        self.X = X_test
+        
+    def predict(self, X=None):
+        if X is not None:
+            return self.model.predict(X)
+        return self.model.predict(self.X)
+    
+    def evaluate(self):
+        test, X_test, y_test = self.prepocessed_data.get_data('test', oversample=False)
+        y_pred = self.predict()
+        return classification_report(y_test, y_pred)
+    
+
+def main(args):
+    print('args: ', args)
+    if args.model == 'knn':
+        model = f"models/{args.dataset}/{args.dataset}-knn-model.joblib"
+    elif args.model == 'naive_bayes':
+        model = f"models/{args.dataset}/{args.dataset}-naive-bayes-model.joblib"
+    else:
+        raise ValueError(f"Unsupported model: {args.model}")
+
+    print('args 1: ', args)
+    model = PredictModel(args.dataset, model)
+    prediction = model.predict()
+    evaluation = model.evaluate()
+    return print(prediction), print(evaluation)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', type=str, help='Dataset type.')
+    parser.add_argument('--model', type=str, help='Model type.')
+    args = parser.parse_args()
+
+    main(args)
