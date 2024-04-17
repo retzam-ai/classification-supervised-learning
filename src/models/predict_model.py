@@ -9,17 +9,17 @@ class PredictModel:
         self.model = load(model)
         self.prepocessed_data = BuildFeatures(dataset)
         test, X_test, y_test = self.prepocessed_data.get_data('test', oversample=False)
-        self.X = X_test
+        self.X_test = X_test
+        self.y_test = y_test
         
     def predict(self, X=None):
         if X is not None:
             return self.model.predict(X)
-        return self.model.predict(self.X)
+        return self.model.predict(self.X_test)
     
     def evaluate(self):
-        test, X_test, y_test = self.prepocessed_data.get_data('test', oversample=False)
-        y_pred = self.predict()
-        return classification_report(y_test, y_pred)
+        y_pred = self.model.predict(self.X_test)
+        return classification_report(self.y_test, y_pred)
     
 
 def main(args):
