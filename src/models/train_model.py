@@ -5,7 +5,7 @@ from src.models.train.naive_bayes import TrainNaiveBayesModel
 def main(args):
     print('args: ', args)
     if args.model == 'knn':
-        model = TrainKNNModel(args.dataset, k=5)
+        model = TrainKNNModel(args.dataset)
         model.train()
         return print(f"KNN model successfully trained with {args.dataset}.")
 
