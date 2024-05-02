@@ -1,10 +1,29 @@
-classification-supervised-learning
-==============================
+# classification-supervised-learning
 
 retzam.ai - This project shows how classification models are implemented to train models in supervised learning.
 
-Project Organization
-------------
+Install dependencies:
+make requirements
+
+Models = [
+knn,
+naive_bayes,
+logistic_regression
+]
+
+Datasets = [
+cars,
+injury,
+machines
+]
+
+Train model:
+make train_model model=naive_bayes dataset=machines
+
+Predict model:
+make predict_model model=naive_bayes dataset=machines
+
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -51,7 +70,6 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
---------
+---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
