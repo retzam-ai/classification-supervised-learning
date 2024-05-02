@@ -28,10 +28,11 @@ def main(args):
         model = f"models/{args.dataset}/{args.dataset}-knn-model.joblib"
     elif args.model == 'naive_bayes':
         model = f"models/{args.dataset}/{args.dataset}-naive-bayes-model.joblib"
+    elif args.model == 'logistic_regression':
+        model = f"models/{args.dataset}/{args.dataset}-logistic-regression-model.joblib"
     else:
         raise ValueError(f"Unsupported model: {args.model}")
 
-    print('args 1: ', args)
     model = PredictModel(args.dataset, model)
     prediction = model.predict()
     evaluation = model.evaluate()
