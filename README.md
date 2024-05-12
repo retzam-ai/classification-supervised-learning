@@ -8,13 +8,17 @@ make requirements
 Models = [
 knn,
 naive_bayes,
-logistic_regression
+logistic_regression,
+svc,
+random_forest
 ]
 
 Datasets = [
 cars,
 injury,
-machines
+machines,
+marketing,
+diabetes
 ]
 
 Train model:
