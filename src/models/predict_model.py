@@ -30,6 +30,10 @@ def main(args):
         model = f"models/{args.dataset}/{args.dataset}-naive-bayes-model.joblib"
     elif args.model == 'logistic_regression':
         model = f"models/{args.dataset}/{args.dataset}-logistic-regression-model.joblib"
+    elif args.model == 'svm':
+        model = f"models/{args.dataset}/{args.dataset}-svm-model.joblib"
+    elif args.model == 'random_forest':
+        model = f"models/{args.dataset}/{args.dataset}-random-forest-model.joblib"
     else:
         raise ValueError(f"Unsupported model: {args.model}")
 
